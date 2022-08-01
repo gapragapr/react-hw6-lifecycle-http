@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import Watch from "./Components/Watch/Watch";
+import Input from "./Components/Input/Input";
+import Button from "./Components/Button/Button";
+import { useState } from "react";
+
+import './App.css'
 
 function App() {
+  const [watchArr, setWatchArr] = useState([])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="addWatchForm">
+        <Input name='name' subTitle='Название'></Input>
+        <Input name='timezone' subTitle='Временная зона'></Input>
+        <Button watchArr={watchArr} setWatchArr={setWatchArr}></Button>
+      </div>
+      <div className="watchList">
+        {watchArr.map((item, index) => {
+          return <Watch key={index} watchArr={watchArr} setWatchArr={setWatchArr} obj={item}></Watch>
+        })}
+      </div>
     </div>
   );
 }
